@@ -100,4 +100,16 @@ public class ContactBook {
         return contacts[currentContact++];
     }
 
+    public boolean contactsWithSameNumber(){
+        for(int i = 0; i < counter; i++){
+            for(int j = 0; j < counter; j++){
+                if (contacts[i].getPhone() == contacts[j].getPhone() && i!=j) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
 }
+
+
