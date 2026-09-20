@@ -1,6 +1,8 @@
 import contactBook.Contact;
 import contactBook.ContactBook;
 
+import javax.swing.text.html.HTMLDocument;
+import java.util.Iterator;
 import java.util.Scanner;
 
 
@@ -27,6 +29,8 @@ public class Main {
     public static final String BOOK_EMPTY = "contactBook.Contact book empty.";
     public static final String QUIT_MSG = "Goodbye!";
     public static final String COMMAND_ERROR = "Unknown command.";
+    public static final String REPEATED = "There are contacts that share phone numbers.";
+    public static final String NON_REPEATED = "All contacts have different phone numbers.";
 
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
@@ -60,7 +64,7 @@ public class Main {
                     getContactByNumber(in,cBook);
                     break;
                 case REPEATED_PHONES:
-                    repeatedPhones();
+                    repeatedPhones(cBook);
                     break;
                 default:
                     System.out.println(COMMAND_ERROR);
@@ -163,7 +167,11 @@ public class Main {
         else System.out.println(name);
     }
 
-    private static void repeatedPhones(){
-
+    private static void repeatedPhones(ContactBook cBook){
+        if (cBook.contactsWithSameNumber()){
+            System.out.println(REPEATED);
+        } else {
+            System.out.println(NON_REPEATED);
+        }
     }
 }
